@@ -9,7 +9,8 @@ tools:
     sensiolabs_security_checker: true
     php_code_coverage:
       enabled: true
-      excluded_paths: [vendor/*, tests/*]
+      filter:
+        excluded_paths: [vendor/*, tests/*]
     php_pdepend:
       enabled: true
       excluded_dirs:
