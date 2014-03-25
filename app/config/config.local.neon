@@ -1,7 +1,7 @@
 #
 parameters:
 
-    cdnUrl: /
+    cdnUrl:
     svnLogFile: %appDir%/../app/resources/svnlog.xml
     jiraFile: %appDir%/../app/resources/jiraIssueResponse.json
 
