@@ -41,7 +41,7 @@ class Wrapper extends \Nette\Object
     {
         $this->logger->info('JIRA Request: ' . $key);
         $issue = $this->issuesRepository->findIssueByKey($key);
-        $this->logger->info($issue);
+        $this->logger->info('JIRA Request: ' . $key, $issue->toArray());
 
         return $issue;
     }
