@@ -38,6 +38,8 @@ common:
             class: DixonsCz\Chuck\Jira\Issue\Repository
         jiraRequestsFactory:
             class: DixonsCz\Chuck\Jira\Request\Factory
+        jiraHttpRequest:
+            class: DixonsCz\Chuck\Jira\HttpRequest            
         jiraClient:
             class: DixonsCz\Chuck\Jira\Client
         singleIssueTransformer:
