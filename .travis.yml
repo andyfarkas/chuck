@@ -4,9 +4,26 @@ php:
     - 5.5
 
 before_script:
+    # install web server for behat tests
+    - sudo apt-get update > /dev/null
+    - sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-curl php5-mysql php5-intl
+    # add virtual host
+    - sudo sed -i -e "s,/var/www,$(pwd)/www,g" /etc/apache2/sites-available/default
+    # add virtualhost chuck.l
+    - sudo sed -i -e "/DocumentRoot/i\ServerName chuck.l" /etc/apache2/sites-available/default
+    - echo "127.0.0.1 chuck.l" | sudo tee -a /etc/hosts
+    - sudo /etc/init.d/apache2 restart
+    # install all dependencies
+    - composer self-update
     - composer install --no-interaction --dev --prefer-source
+    # install Nette directories
+    - mkdir log
+    - mkdir temp
+    - chmod -R 777 temp log
 
-script: phpunit --coverage-clover=coverage.clover
+script:
+    - phpunit --coverage-clover=coverage.clover
+    - vendor/bin/behat
 
 after_script:
   - wget https://scrutinizer-ci.com/ocular.phar
