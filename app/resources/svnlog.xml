@@ -31,19 +31,10 @@
 <msg>Added a new folder for testing team</msg>
 </logentry>
 <logentry
-   revision="24940">
-<author>gech01</author>
-<date>2014-02-21T09:17:47.590593Z</date>
-<msg>[DEVFRONT-120] 
-http://jira.dixons.co.uk/browse/DEVFRONT-120
-- IPs for Hemel and India added to INTERNAL_IP_MASK for DEV, TEST, PROD environments</msg>
-</logentry>
-<logentry
    revision="24932">
 <author>hallof01</author>
 <date>2014-02-14T13:18:24.168949Z</date>
 <msg>[CZDXNS-215] CLONE - Bug - Downloads - RFC 18.4 [Step page] : 'About Downloads at Currys' link is not properly aligned
-
 fixing after long time, since before, integration team was responsible for css, they didnt apply my patch, tested in Firefox 27, Chrome 32, IE 7 &amp; 10 and Opera 12</msg>
 </logentry>
 <logentry
@@ -72,7 +63,7 @@ fixing after long time, since before, integration team was responsible for css, 
    revision="24920">
 <author>svecm01</author>
 <date>2014-02-06T16:42:32.422249Z</date>
-<msg>[DEVFRONT-14] store finder on home page doesn't retrieve page with nearest stores
+<msg>[DEVGW-28] store finder on home page doesn't retrieve page with nearest stores
 - removed CSRF token from store finder forms. Linked to DEVCORE-3</msg>
 </logentry>
 <logentry

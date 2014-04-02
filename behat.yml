@@ -1,0 +1,15 @@
+default:
+  formatter:
+    name: pretty
+  paths:
+    features: features
+  extensions:
+    Behat\MinkExtension\Extension:
+      base_url: http://localhost/norel-dev-tools/chuck/www/
+      #base_url: http://172.20.1.19/chuck/
+      show_cmd: 'firefox.exe %s'
+      default_session: goutte
+      javascript_session: selenium2
+      goutte: ~
+      selenium2: ~
+      zombie: ~

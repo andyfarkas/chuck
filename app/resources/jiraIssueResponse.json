@@ -1,2 +1,275 @@
+{
+	"expand":"renderedFields,names,schema,transitions,operations,editmeta,changelog",
+	"id":"284349",
+	"self":"http://jira.dixons.co.uk/rest/api/latest/issue/284349",
+	"key":"DEVGW-28",
+	"fields":{
+		"summary":"DSG - P4 - Correct time on Hourly sale messages cron",
+		"issuetype":{
+			"self":"http://jira.dixons.co.uk/rest/api/2/issuetype/100",
+			"id":"100",
+			"description":"",
+			"iconUrl":"http://jira.dixons.co.uk/images/icons/genericissue.gif",
+			"name":"Support Task",
+			"subtask":false
+		},
+		"customfield_10244":null,
+		"customfield_10240":null,
+		"customfield_10039":null,
+		"timespent":null,
+		"customfield_10231":null,
+		"customfield_10230":null,
+		"reporter":{
+			"self":"http://jira.dixons.co.uk/rest/api/2/user?username=jurasp01",
+			"name":"jurasp01",
+			"emailAddress":"Petr.Jurasek@dixonsretail.com",
+			"avatarUrls":{
+				"16x16":"http://jira.dixons.co.uk/secure/useravatar?size=small&ownerId=jurasp01&avatarId=11902",
+				"48x48":"http://jira.dixons.co.uk/secure/useravatar?ownerId=jurasp01&avatarId=11902"
+			},
+			"displayName":"Petr Jurasek",
+			"active":true
+		},
+		"customfield_10430":null,
+		"customfield_10229":null,
+		"customfield_10431":null,
+		"customfield_10225":null,
+		"customfield_10226":{
+			"self":"http://jira.dixons.co.uk/rest/api/2/customFieldOption/10847",
+			"value":"No",
+			"id":"10847"
+		},
+		"created":"2014-01-22T14:34:15.649+0000",
+		"customfield_10227":null,
+		"customfield_10228":null,
+		"customfield_10189":null,
+		"customfield_11053":null,
+		"customfield_10224":null,
+		"customfield_10223":null,
+		"customfield_10222":null,
+		"customfield_10221":null,
+		"customfield_10391":null,
+		"customfield_10220":null,
+		"customfield_11050":null,
+		"customfield_11052":null,
+		"customfield_11051":null,
+		"project":{
+			"self":"http://jira.dixons.co.uk/rest/api/2/project/DEVGW",
+			"id":"11255",
+			"key":"DEVGW",
+			"name":"Development Gateway",
+			"avatarUrls":{
+				"16x16":"http://jira.dixons.co.uk/secure/projectavatar?size=small&pid=11255&avatarId=10011",
+				"48x48":"http://jira.dixons.co.uk/secure/projectavatar?pid=11255&avatarId=10011"
+			}
+		},
+		"customfield_11745":null,
+		"customfield_10191":null,
+		"customfield_11744":null,
+		"components":[
 
-{"expand": "renderedFields,names,schema,transitions,operations,editmeta,changelog", "id": "284349", "self": "http://jira.dixons.co.uk/rest/api/latest/issue/284349", "key": "DEVGW-28", "fields": {"summary": "DSG - P4 - Correct time on Hourly sale messages cron", "issuetype": {"self": "http://jira.dixons.co.uk/rest/api/2/issuetype/100", "id": "100", "description": "", "iconUrl": "http://jira.dixons.co.uk/images/icons/genericissue.gif", "name": "Support Task", "subtask": false}, "customfield_10244": null, "customfield_10240": null, "customfield_10039": null, "timespent": null, "customfield_10231": null, "customfield_10230": null, "reporter": {"self": "http://jira.dixons.co.uk/rest/api/2/user?username=jurasp01", "name": "jurasp01", "emailAddress": "Petr.Jurasek@dixonsretail.com", "avatarUrls": {"16x16": "http://jira.dixons.co.uk/secure/useravatar?size=small&ownerId=jurasp01&avatarId=11902", "48x48": "http://jira.dixons.co.uk/secure/useravatar?ownerId=jurasp01&avatarId=11902"}, "displayName": "Petr Jurasek", "active": true}, "customfield_10430": null, "customfield_10229": null, "customfield_10431": null, "customfield_10225": null, "customfield_10226": {"self": "http://jira.dixons.co.uk/rest/api/2/customFieldOption/10847", "value": "No", "id": "10847"}, "created": "2014-01-22T14:34:15.649+0000", "customfield_10227": null, "customfield_10228": null, "customfield_10189": null, "customfield_11053": null, "customfield_10224": null, "customfield_10223": null, "customfield_10222": null, "customfield_10221": null, "customfield_10391": null, "customfield_10220": null, "customfield_11050": null, "customfield_11052": null, "customfield_11051": null, "project": {"self": "http://jira.dixons.co.uk/rest/api/2/project/DEVGW", "id": "11255", "key": "DEVGW", "name": "Development Gateway", "avatarUrls": {"16x16": "http://jira.dixons.co.uk/secure/projectavatar?size=small&pid=11255&avatarId=10011", "48x48": "http://jira.dixons.co.uk/secure/projectavatar?pid=11255&avatarId=10011"}}, "customfield_11745": null, "customfield_10191": null, "customfield_11744": null, "components": [], "comment": {"startAt": 0, "maxResults": 2, "total": 2, "comments": [{"self": "http://jira.dixons.co.uk/rest/api/2/issue/284349/comment/978077", "id": "978077", "author": {"self": "http://jira.dixons.co.uk/rest/api/2/user?username=jurasp01", "name": "jurasp01", "emailAddress": "Petr.Jurasek@dixonsretail.com", "avatarUrls": {"16x16": "http://jira.dixons.co.uk/secure/useravatar?size=small&ownerId=jurasp01&avatarId=11902", "48x48": "http://jira.dixons.co.uk/secure/useravatar?ownerId=jurasp01&avatarId=11902"}, "displayName": "Petr Jurasek", "active": true}, "body": "Fixed.\r\n\r\nImpacted files:\r\ngateway\\www\\application\\controllers\\cron\\SaleMessageCron.php  \r\n\r\nRevision: 4306", "updateAuthor": {"self": "http://jira.dixons.co.uk/rest/api/2/user?username=jurasp01", "name": "jurasp01", "emailAddress": "Petr.Jurasek@dixonsretail.com", "avatarUrls": {"16x16": "http://jira.dixons.co.uk/secure/useravatar?size=small&ownerId=jurasp01&avatarId=11902", "48x48": "http://jira.dixons.co.uk/secure/useravatar?ownerId=jurasp01&avatarId=11902"}, "displayName": "Petr Jurasek", "active": true}, "created": "2014-01-22T14:37:41.765+0000", "updated": "2014-01-22T14:37:41.765+0000"}, {"self": "http://jira.dixons.co.uk/rest/api/2/issue/284349/comment/989759", "id": "989759", "author": {"self": "http://jira.dixons.co.uk/rest/api/2/user?username=STANIJ07", "name": "STANIJ07", "emailAddress": "Josef.Stanicek@dixonsretail.com", "avatarUrls": {"16x16": "http://jira.dixons.co.uk/secure/useravatar?size=small&avatarId=10523", "48x48": "http://jira.dixons.co.uk/secure/useravatar?avatarId=10523"}, "displayName": "Josef Stanicek", "active": true}, "body": "Code Review OK", "updateAuthor": {"self": "http://jira.dixons.co.uk/rest/api/2/user?username=STANIJ07", "name": "STANIJ07", "emailAddress": "Josef.Stanicek@dixonsretail.com", "avatarUrls": {"16x16": "http://jira.dixons.co.uk/secure/useravatar?size=small&avatarId=10523", "48x48": "http://jira.dixons.co.uk/secure/useravatar?avatarId=10523"}, "displayName": "Josef Stanicek", "active": true}, "created": "2014-01-24T14:57:52.321+0000", "updated": "2014-01-24T14:57:52.321+0000"}]}, "timeoriginalestimate": null, "customfield_10306": null, "customfield_11142": null, "customfield_11640": {"self": "http://jira.dixons.co.uk/rest/api/2/customFieldOption/12840", "value": "PROD", "id": "12840"}, "customfield_11143": null, "customfield_10304": null, "customfield_10261": null, "customfield_10211": null, "resolutiondate": "2014-01-24T14:58:04.783+0000", "customfield_11742": null, "customfield_11542": null, "duedate": "2014-01-22", "watches": {"self": "http://jira.dixons.co.uk/rest/api/2/issue/DEVGW-28/watchers", "watchCount": 1, "isWatching": false}, "worklog": {"startAt": 0, "maxResults": 0, "total": 0, "worklogs": []}, "customfield_11440": null, "customfield_11841": null, "customfield_11840": null, "customfield_10172": null, "customfield_10170": null, "timeestimate": null, "progress": {"progress": 0, "total": 0}, "timetracking": {}, "customfield_10941": null, "customfield_11845": null, "customfield_11844": null, "customfield_11843": null, "customfield_10281": null, "customfield_11842": null, "customfield_11846": null, "updated": "2014-02-27T14:31:46.436+0000", "priority": {"self": "http://jira.dixons.co.uk/rest/api/2/priority/4", "iconUrl": "http://jira.dixons.co.uk/images/icons/priority_minor.gif", "name": "Minor (P4)", "id": "4"}, "description": "Correct time on Hourly sale messages cron. There is used -1 hour issue in the name of file.", "issuelinks": [], "subtasks": [], "customfield_10297": null, "status": {"self": "http://jira.dixons.co.uk/rest/api/2/status/6", "description": "The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.", "iconUrl": "http://jira.dixons.co.uk/images/icons/status_closed.gif", "name": "Closed", "id": "6"}, "labels": [], "workratio": -1, "environment": null, "customfield_10321": null, "customfield_10320": null, "aggregateprogress": {"progress": 0, "total": 0}, "customfield_10740": null, "customfield_10642": null, "customfield_10641": null, "customfield_10640": null, "fixVersions": [], "resolution": {"self": "http://jira.dixons.co.uk/rest/api/2/resolution/1", "id": "1", "description": "A fix for this issue is checked into the tree and tested.", "name": "Fixed"}, "customfield_10540": null, "customfield_10840": null, "aggregatetimeoriginalestimate": null, "customfield_11041": null, "customfield_11046": null, "customfield_11047": null, "customfield_11048": null, "customfield_11049": null, "customfield_11042": null, "customfield_11043": null, "customfield_11044": null, "customfield_11045": null, "assignee": {"self": "http://jira.dixons.co.uk/rest/api/2/user?username=STANIJ07", "name": "STANIJ07", "emailAddress": "Josef.Stanicek@dixonsretail.com", "avatarUrls": {"16x16": "http://jira.dixons.co.uk/secure/useravatar?size=small&avatarId=10523", "48x48": "http://jira.dixons.co.uk/secure/useravatar?avatarId=10523"}, "displayName": "Josef Stanicek", "active": true}, "attachment": [], "aggregatetimeestimate": null, "versions": [], "customfield_10341": null, "customfield_10440": "168116", "customfield_10643": null, "customfield_10644": null, "customfield_10645": null, "customfield_10646": null, "customfield_10745": null, "customfield_10647": null, "customfield_10648": null, "customfield_10649": "Not Started", "aggregatetimespent": null, "customfield_10742": null}}
+		],
+		"comment":{
+			"startAt":0,
+			"maxResults":2,
+			"total":2,
+			"comments":[
+				{
+					"self":"http://jira.dixons.co.uk/rest/api/2/issue/284349/comment/978077",
+					"id":"978077",
+					"author":{
+						"self":"http://jira.dixons.co.uk/rest/api/2/user?username=jurasp01",
+						"name":"jurasp01",
+						"emailAddress":"Petr.Jurasek@dixonsretail.com",
+						"avatarUrls":{
+							"16x16":"http://jira.dixons.co.uk/secure/useravatar?size=small&ownerId=jurasp01&avatarId=11902",
+							"48x48":"http://jira.dixons.co.uk/secure/useravatar?ownerId=jurasp01&avatarId=11902"
+						},
+						"displayName":"Petr Jurasek",
+						"active":true
+					},
+					"body":"Fixed.\r\n\r\nImpacted files:\r\ngateway\\www\\application\\controllers\\cron\\SaleMessageCron.php  \r\n\r\nRevision: 4306",
+					"updateAuthor":{
+						"self":"http://jira.dixons.co.uk/rest/api/2/user?username=jurasp01",
+						"name":"jurasp01",
+						"emailAddress":"Petr.Jurasek@dixonsretail.com",
+						"avatarUrls":{
+							"16x16":"http://jira.dixons.co.uk/secure/useravatar?size=small&ownerId=jurasp01&avatarId=11902",
+							"48x48":"http://jira.dixons.co.uk/secure/useravatar?ownerId=jurasp01&avatarId=11902"
+						},
+						"displayName":"Petr Jurasek",
+						"active":true
+					},
+					"created":"2014-01-22T14:37:41.765+0000",
+					"updated":"2014-01-22T14:37:41.765+0000"
+				},
+				{
+					"self":"http://jira.dixons.co.uk/rest/api/2/issue/284349/comment/989759",
+					"id":"989759",
+					"author":{
+						"self":"http://jira.dixons.co.uk/rest/api/2/user?username=STANIJ07",
+						"name":"STANIJ07",
+						"emailAddress":"Josef.Stanicek@dixonsretail.com",
+						"avatarUrls":{
+							"16x16":"http://jira.dixons.co.uk/secure/useravatar?size=small&avatarId=10523",
+							"48x48":"http://jira.dixons.co.uk/secure/useravatar?avatarId=10523"
+						},
+						"displayName":"Josef Stanicek",
+						"active":true
+					},
+					"body":"Code Review OK",
+					"updateAuthor":{
+						"self":"http://jira.dixons.co.uk/rest/api/2/user?username=STANIJ07",
+						"name":"STANIJ07",
+						"emailAddress":"Josef.Stanicek@dixonsretail.com",
+						"avatarUrls":{
+							"16x16":"http://jira.dixons.co.uk/secure/useravatar?size=small&avatarId=10523",
+							"48x48":"http://jira.dixons.co.uk/secure/useravatar?avatarId=10523"
+						},
+						"displayName":"Josef Stanicek",
+						"active":true
+					},
+					"created":"2014-01-24T14:57:52.321+0000",
+					"updated":"2014-01-24T14:57:52.321+0000"
+				}
+			]
+		},
+		"timeoriginalestimate":null,
+		"customfield_10306":null,
+		"customfield_11142":null,
+		"customfield_11640":{
+			"self":"http://jira.dixons.co.uk/rest/api/2/customFieldOption/12840",
+			"value":"PROD",
+			"id":"12840"
+		},
+		"customfield_11143":null,
+		"customfield_10304":null,
+		"customfield_10261":null,
+		"customfield_10211":null,
+		"resolutiondate":"2014-01-24T14:58:04.783+0000",
+		"customfield_11742":null,
+		"customfield_11542":null,
+		"duedate":"2014-01-22",
+		"watches":{
+			"self":"http://jira.dixons.co.uk/rest/api/2/issue/DEVGW-28/watchers",
+			"watchCount":1,
+			"isWatching":false
+		},
+		"worklog":{
+			"startAt":0,
+			"maxResults":0,
+			"total":0,
+			"worklogs":[
+
+			]
+		},
+		"customfield_11440":null,
+		"customfield_11841":null,
+		"customfield_11840":null,
+		"customfield_10172":null,
+		"customfield_10170":null,
+		"timeestimate":null,
+		"progress":{
+			"progress":0,
+			"total":0
+		},
+		"timetracking":{
+
+		},
+		"customfield_10941":null,
+		"customfield_11845":null,
+		"customfield_11844":null,
+		"customfield_11843":null,
+		"customfield_10281":null,
+		"customfield_11842":null,
+		"customfield_11846":null,
+		"updated":"2014-02-27T14:31:46.436+0000",
+		"priority":{
+			"self":"http://jira.dixons.co.uk/rest/api/2/priority/4",
+			"iconUrl":"http://jira.dixons.co.uk/images/icons/priority_minor.gif",
+			"name":"Minor (P4)",
+			"id":"4"
+		},
+		"description":"Correct time on Hourly sale messages cron. There is used -1 hour issue in the name of file.",
+		"issuelinks":[
+
+		],
+		"subtasks":[
+
+		],
+		"customfield_10297":null,
+		"status":{
+			"self":"http://jira.dixons.co.uk/rest/api/2/status/6",
+			"description":"The issue is considered finished, the resolution is correct. Issues which are closed can be reopened.",
+			"iconUrl":"http://jira.dixons.co.uk/images/icons/status_closed.gif",
+			"name":"Closed",
+			"id":"6"
+		},
+		"labels":[
+
+		],
+		"workratio":-1,
+		"environment":null,
+		"customfield_10321":null,
+		"customfield_10320":null,
+		"aggregateprogress":{
+			"progress":0,
+			"total":0
+		},
+		"customfield_10740":null,
+		"customfield_10642":null,
+		"customfield_10641":null,
+		"customfield_10640":null,
+		"fixVersions":[
+
+		],
+		"resolution":{
+			"self":"http://jira.dixons.co.uk/rest/api/2/resolution/1",
+			"id":"1",
+			"description":"A fix for this issue is checked into the tree and tested.",
+			"name":"Fixed"
+		},
+		"customfield_10540":null,
+		"customfield_10840":null,
+		"aggregatetimeoriginalestimate":null,
+		"customfield_11041":null,
+		"customfield_11046":null,
+		"customfield_11047":null,
+		"customfield_11048":null,
+		"customfield_11049":null,
+		"customfield_11042":null,
+		"customfield_11043":null,
+		"customfield_11044":null,
+		"customfield_11045":null,
+		"assignee":{
+			"self":"http://jira.dixons.co.uk/rest/api/2/user?username=STANIJ07",
+			"name":"STANIJ07",
+			"emailAddress":"Josef.Stanicek@dixonsretail.com",
+			"avatarUrls":{
+				"16x16":"http://jira.dixons.co.uk/secure/useravatar?size=small&avatarId=10523",
+				"48x48":"http://jira.dixons.co.uk/secure/useravatar?avatarId=10523"
+			},
+			"displayName":"Josef Stanicek",
+			"active":true
+		},
+		"attachment":[
+
+		],
+		"aggregatetimeestimate":null,
+		"versions":[
+
+		],
+		"customfield_10341":null,
+		"customfield_10440":"168116",
+		"customfield_10643":null,
+		"customfield_10644":null,
+		"customfield_10645":null,
+		"customfield_10646":null,
+		"customfield_10745":null,
+		"customfield_10647":null,
+		"customfield_10648":null,
+		"customfield_10649":"Not Started",
+		"aggregatetimespent":null,
+		"customfield_10742":null
+	}
+}
