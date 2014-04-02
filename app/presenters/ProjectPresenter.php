@@ -1,5 +1,7 @@
 <?php
 
+namespace DixonsCz\Chuck\Presenters;
+
 /**
  * @author Michal Svec <michal.svec@dixonsretail.com>
  */
@@ -82,7 +84,7 @@ abstract class ProjectPresenter extends \DixonsCz\Chuck\Presenters\BasePresenter
     protected function getChangelogTemplate($template, $ticketLog)
     {
         // #necessary to create new template, because $this->createTemplate() needs block and includes layout file
-        $template = new Nette\Templating\FileTemplate(APP_DIR . '/templates/Log/changelogTpls/'.$template);
+        $template = new \Nette\Templating\FileTemplate(APP_DIR . '/templates/Log/changelogTpls/'.$template);
         $template->onPrepareFilters[] = callback($this, 'templatePrepareFilters');
         $template->registerHelperLoader('Nette\Templating\Helpers::loader');
         $template->baseUri = $template->baseUrl = rtrim($this->getHttpRequest()->getUrl()->getBaseUrl(), '/');

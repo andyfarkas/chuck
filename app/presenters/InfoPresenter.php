@@ -1,5 +1,7 @@
 <?php
 
+namespace DixonsCz\Chuck\Presenters;
+
 /**
  * @author Michal Svec <michal.svec@dixonsretail.com>
  */

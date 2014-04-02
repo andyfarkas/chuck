@@ -1,5 +1,7 @@
 <?php
 
+namespace DixonsCz\Chuck\Presenters;
+
 /**
  * @author Michal Svec <michal.svec@dixonsretail.com>
  */
@@ -12,7 +14,7 @@ class LogPresenter extends ProjectPresenter
      */
     public function renderList($project)
     {
-        $vp = new VisualPaginator($this, 'vp');
+        $vp = new \VisualPaginator($this, 'vp');
         $paginator = $vp->getPaginator();
         $paginator->itemsPerPage = 30;
         $paginator->itemCount = $this->context->svnHelper->getLogSize();
@@ -29,7 +31,7 @@ class LogPresenter extends ProjectPresenter
                 $paginator->offset,
                 $paginator->itemsPerPage
             );
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $logList = array();
             $this->flashMessage($e->getMessage(), 'error');
         }
