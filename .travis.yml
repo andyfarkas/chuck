@@ -16,6 +16,10 @@ before_script:
     # install all dependencies
     - composer self-update
     - composer install --no-interaction --dev --prefer-source
+    # install Nette directories
+    - mkdir log
+    - mkdir temp
+    - chmod -R 777 temp log
 
 script:
     - phpunit --coverage-clover=coverage.clover
