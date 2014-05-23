@@ -10,7 +10,7 @@ tools:
     php_code_coverage:
       enabled: true
       filter:
-        excluded_paths: [vendor/*, tests/*]
+        excluded_paths: [vendor, tests]
     php_pdepend:
       enabled: true
       excluded_dirs:
@@ -19,8 +19,10 @@ tools:
     php_loc:
         enabled: true
         excluded_dirs: [vendor, tests]
-    php_sim:
+    php_cpd:
         enabled: true
+        command: phpcpd
         excluded_dirs:
-          - vendor
-          - tests
+            - 'bin/*'
+            - 'vendor/*'
+            - 'tests/*'
