@@ -54,7 +54,7 @@ class Helper implements IHelper
     /**
      * @var LoggerInterface
      */
-    private $loger;
+    private $logger;
 
     public function __construct($tempDir, LoggerInterface $logger, $credentials = null, $projects = array())
     {
