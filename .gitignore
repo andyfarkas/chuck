@@ -1,6 +1,5 @@
 .idea
 vendor/
 app/config/secret.neon
-composer.lock
 temp/*
 log/*
