@@ -6,6 +6,7 @@
 		"monolog/monolog": "1.8.*"
 	},
 	"require-dev": {
+		"symfony/dom-crawler": "2.4.4",
 		"phpunit/phpunit": "3.7.*",
 		"behat/behat": "2.5.*",
 		"behat/mink": "1.5.*",
