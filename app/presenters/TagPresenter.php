@@ -113,7 +113,7 @@ class TagPresenter extends ProjectPresenter
             $parent->redirect("Tag:list");
         };
 
-        if (false === array_search($tag1,$tagNames)) {
+        if (false === array_search($tag1, $tagNames)) {
             $callback($this, $tag1);
         }
         if (false === array_search($tag2, $tagNames)) {
@@ -127,7 +127,10 @@ class TagPresenter extends ProjectPresenter
 
         $diff = array_diff_key($tag1Log, $tag2Log);
 
-        $changelogTpl = $this->getChangelogTemplate($this->getTemplateForProject($project), $this->getLogGenerator()->generateTicketLog($diff));
+        $changelogTpl = $this->getChangelogTemplate(
+            $this->getTemplateForProject($project),
+            $this->getLogGenerator()->generateTicketLog($diff)
+        );
         $changelogTpl->rollbackTag = $tag1;
         $changelogTpl->releaseTag = $tag2;
         $this->template->logTpl = $changelogTpl;
@@ -149,7 +152,7 @@ class TagPresenter extends ProjectPresenter
             $parent->redirect("Tag:list");
         };
 
-        if (false === array_search($tag1,$tagNames)) {
+        if (false === array_search($tag1, $tagNames)) {
             $callback($this, $tag1);
         }
         if (false === array_search($tag2, $tagNames)) {
@@ -163,9 +166,14 @@ class TagPresenter extends ProjectPresenter
 
         $diff = array_diff_key($tag1Log, $tag2Log);
 
-        $this->context->mailHelper->getMail($this->formatLog($diff), $this->template->projectName, $this->project, $toReleaseNote, 'Line');
+        $this->context->mailHelper->getMail(
+            $this->formatLog($diff),
+            $this->template->projectName,
+            $this->project,
+            $toReleaseNote,
+            'Line'
+        );
 
         $this->flashMessage('Mail was sent!', 'success');
     }
-
-        }
+}

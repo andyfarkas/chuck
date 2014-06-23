@@ -50,11 +50,20 @@ class LogPresenter extends ProjectPresenter
             }
 
             if (isset($_GET['emailSend']) && $_GET['emailSend'] == 'email') {
-                $this->context->mailHelper->getMail($this->formatLog($changeLogList), $this->template->projectName, $this->project, $_GET['toReleaseNote'], 'Line');
+                $this->context->mailHelper->getMail(
+                    $this->formatLog($changeLogList),
+                    $this->template->projectName,
+                    $this->project,
+                    $_GET['toReleaseNote'],
+                    'Line'
+                );
                 $this->flashMessage('Mail was sent!', 'success');
             }
 
-            $this->template->logTpl = $this->getChangelogTemplate($this->getTemplateForProject($project), $this->getLogGenerator()->generateTicketLog($changeLogList));
+            $this->template->logTpl = $this->getChangelogTemplate(
+                $this->getTemplateForProject($project),
+                $this->getLogGenerator()->generateTicketLog($changeLogList)
+            );
         }
 
         \Nette\Diagnostics\Debugger::barDump($logList, "Log list");
