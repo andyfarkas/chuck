@@ -11,8 +11,14 @@ common:
             errorPresenter: Error
             mapping:
                 *: DixonsCz\Chuck\Presenters\*Presenter
-
+        debugger:
+            strictMode: true
+            bar:
+                - @svnDebugBar
     services:
+        svnDebugBar:
+            class: DixonsCz\Chuck\Svn\Panel
+            run: true
         streamHandler:
             class: Monolog\Handler\StreamHandler
             arguments: ['../log/log.txt', 200]
@@ -24,7 +30,7 @@ common:
             arguments: ['main']
         svnHelper:
             class: DixonsCz\Chuck\Svn\Helper
-            arguments: [%tempDir%, @logger, %svn.credentials%, %projects%]
+            arguments: [%tempDir%, @svnDebugBar, %svn.credentials%, %projects%]
             run: true
         jiraHelper:
             class: DixonsCz\Chuck\Jira\Wrapper

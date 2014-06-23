@@ -20,13 +20,10 @@ class FromFile implements IHelper
     }
 
     /**
-     * 
-     * @param string $tagName
-     * @param string $tagMessage
+     * {@inheritdoc}
      */
-    public function createTag($tagName, $tagMessage)
+    public function createTag($tagName, $tagMessage, $createFrom)
     {
-        
     }
 
     /**
@@ -119,4 +116,19 @@ class FromFile implements IHelper
         
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function doesBranchExist($project, $branchName)
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function doesTagExist($project, $tagName)
+    {
+        return true;
+    }
 }

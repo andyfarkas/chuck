@@ -2,8 +2,6 @@
 
 namespace DixonsCz\Chuck\Svn;
 
-use Psr\Log\LoggerInterface;
-
 /**
  *
  * @author Michal Svec <michal.svec@dixonsretail.com>
@@ -52,14 +50,14 @@ class Helper implements IHelper
     private $credentials;
 
     /**
-     * @var LoggerInterface
+     * @var Panel
      */
-    private $logger;
+    private $panel = null;
 
-    public function __construct($tempDir, LoggerInterface $logger, $credentials = null, $projects = array())
+    public function __construct($tempDir, $panel, $credentials = null, $projects = array())
     {
         //TODO: check if exists
-        $this->logger = $logger;
+        $this->panel = $panel;
         $this->tempDir = $tempDir;
         $this->projects = $projects;
         $this->credentials = $credentials;
@@ -128,9 +126,10 @@ class Helper implements IHelper
     private function executeProjectCommand($command, $xml = true)
     {
         $cmd = $this->getSvnExecutable() . " --non-interactive --trust-server-cert " . $command . ' ' . ($xml == true ? '--xml' : '') . ' "' . $this->projects[$this->project]['repositoryPath'] . '"';
+
+        $this->panel->startCommand($cmd);
         $result = $this->executeCommand($cmd);
-        $this->logger->info('Project command: ' . $cmd);
-//        $this->logger->info('Result: ' . $result);
+        $this->panel->endCommand($result);
 
         return $result;
     }
@@ -138,21 +137,24 @@ class Helper implements IHelper
     /**
      * Executes command on remote repository
      *
-     * @param   string $command remote command to execute
-     * @param   string $path    path in repository f.e. /tags/1.0.0
-     * @return  string script output
+     * @param   string  $command remote command to execute
+     * @param   string  $path    path in repository f.e. /tags/1.0.0
+     * @param   boolean $xml    use xml output?
+     * @return  string  script output
      */
-    private function executeRemoteCommand($command, $path = '/trunk')
+    private function executeRemoteCommand($command, $path = '/trunk', $xml = true)
     {
         // check if there is / at the beginning of path
-        if (0 == preg_match('~^\/.*~', $path)) {
+        if ($path !== null && 0 == preg_match('~^\/.*~', $path)) {
             $path = '/' . $path;
         }
 
-        $cmd = $this->getSvnExecutable() . $command . ' --xml "' . $this->remoteUrl . $path . '"';
-        $this->logger->info('Remote command:' . $cmd);
+        $cmd = $this->getSvnExecutable() . $command . ($xml ? ' --xml ' : '') . ($path !== null ? '"'.$this->remoteUrl . $path.'"' : "");
+        $this->panel->startCommand($cmd);
+        $return = $this->executeCommand($cmd);
+        $this->panel->endCommand($return);
 
-        return $this->executeCommand($cmd);
+        return $return;
     }
 
     /**
@@ -163,8 +165,6 @@ class Helper implements IHelper
      */
     public function getTagLog($tagName, $limit = 30)
     {
-        $this->logger->info("getTagLog: log for tag: $tagName");
-
         $cmd = "log --limit {$limit}";
         $log = $this->executeRemoteCommand($cmd, "/tags/{$tagName}");
 
@@ -195,10 +195,10 @@ class Helper implements IHelper
         }
 
         $cmd = "log -r {$this->commitList[$offset]}:{$this->commitList[$last]} --limit {$limit}";
-        $this->logger->info('getLog: ' . $cmd);
 
+        $this->panel->startCommand($cmd);
         $log = $this->executeProjectCommand($cmd, $path);
-        $this->logger->info('downloaded log: ' . $log);
+        $this->panel->endCommand($log);
 
         if ($log == "") {
             throw new \Exception("Unable to load svn log!");
@@ -298,21 +298,41 @@ class Helper implements IHelper
     }
 
     /**
-     * Creates new tag from trunk
-     *
-     * @param string $tagName    tag name
-     * @param string $tagMessage message to add
+     * {@inheritdoc}
      */
-    public function createTag($tagName, $tagMessage)
+    public function createTag($tagName, $tagMessage, $createFrom)
     {
-        $tempFile = $this->tempDir . '/commitMessage';
+        $tempFile = $this->tempDir . '/tagCommitMessage-'.$tagName;
 
         // TODO: make unique filename
         file_put_contents($tempFile, $tagMessage);
-        $cmd = "svn cp {$this->remoteUrl}/trunk {$this->remoteUrl}/tags/{$tagName} -F {$tempFile}";
-        die($cmd); //TODO: test!!!
-        $this->executeCommand($cmd);
-
+        $cmd = "cp {$this->remoteUrl}/{$createFrom} {$this->remoteUrl}/tags/{$tagName} -F {$tempFile}";
+        $return = $this->executeRemoteCommand($cmd, null, false);
         unlink($tempFile);
+        return $return;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function doesBranchExist($project, $branchName)
+    {
+        $result = $this->executeRemoteCommand("ls --depth immediates", "/branches/{$branchName}");
+
+        $xml = simplexml_load_string($result);
+
+        return $xml->list->entry->count() > 0;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function doesTagExist($project, $tagName)
+    {
+        $result = $this->executeRemoteCommand("ls --depth immediates", "/tags/{$tagName}");
+
+        $xml = simplexml_load_string($result);
+
+        return $xml->list->entry->count() > 0;
     }
 }
