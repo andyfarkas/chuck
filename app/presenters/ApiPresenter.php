@@ -47,11 +47,21 @@ class ApiPresenter extends ProjectPresenter
     }
 
 
-    public function renderTagChangelog($application, $tagName)
+    public function actionGetTagHistory($project, $tagName)
     {
-        $logList = $this->svn->getLog(
-            $this->context->svnHelper->getLog('/tags/'.$tagName)
+        $logList = $this->svn->getUATTagChangelog($tagName);
+
+        $changeLog = $this->getChangelogTemplate(
+            $this->getTemplateForProject($project),
+            $this->getLogGenerator()->generateTicketLog($logList)
         );
+
+        $this->sendJson(array(
+                'status' => 'OK',
+                'message' => (string) $changeLog,
+            ));
+
+
     }
 
 

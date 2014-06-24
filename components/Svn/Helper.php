@@ -176,6 +176,52 @@ class Helper implements IHelper
     }
 
     /**
+     * Checks two tags, their revisions and then generates log from uat branch
+     *
+     * @param  string $tagName
+     * @return array
+     * @throws \Exception
+     */
+    public function getUATTagChangelog($tagName)
+    {
+        // find previous tag
+        $tagList = $this->getTagList();
+        ksort($tagList);
+        $tagNames = array_keys($tagList);
+        $tagPosition = array_search($tagName, $tagNames);
+
+        // check if there is preceding tag and if it's really UAT
+        if(!isset($tagName[$tagPosition-1]) || strstr($tagNames[$tagPosition-1], 'UAT') === false) {
+            throw new \InvalidArgumentException("Unable to create changelog from tag {$tagName}");
+        }
+
+        $prevTagInfo = $this->getTagInfo($tagNames[$tagPosition-1]);
+        $startCommit = $prevTagInfo->entry->commit->attributes()->revision;
+
+        $cmd = "log -r {$startCommit}:HEAD";
+
+        $this->panel->startCommand($cmd);
+        $log = $this->executeRemoteCommand($cmd, "tags/{$tagName}");
+        $this->panel->endCommand($log);
+
+        if ($log == "") {
+            throw new \Exception("Unable to load svn log for 'tags/{$tagName}'!");
+        }
+
+        return $this->processRawLog($log);
+    }
+
+    /**
+     * @param  string $tagName
+     * @return \SimpleXMLElement
+     */
+    public function getTagInfo($tagName)
+    {
+        $info = $this->executeRemoteCommand('info', "/tags/{$tagName}");
+        return simplexml_load_string($info);
+    }
+
+    /**
      * List all commits
      *
      * @param  string       $path   path in project repository, default /trunk, f.e. /tags/1.0.0
