@@ -12,8 +12,9 @@ Installation
 
 Requirements are described in [composer.json](https://github.com/DixonsCz/chuck/blob/master/composer.json).
 
-1. Set up paths to SVN repositories (see config.local.neon)
-2. Copy secret.dev.neon to secret.neon
+1. Copy secret.neon.dist to secret.neon
+2. ```composer install```
+3. Make sure paths ```log/``` and ```temp/cache/``` are writeable by webserver.
 
 Coding standard
 ---------------
