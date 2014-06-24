@@ -2,7 +2,7 @@
 
 namespace DixonsCz\Chuck\Jira\Request;
 
-class Issue implements IRequest
+class Issue implements \DixonsCz\Chuck\Jira\IRequest
 {        
     protected $key;
     

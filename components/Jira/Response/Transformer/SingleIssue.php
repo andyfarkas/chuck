@@ -7,7 +7,7 @@ class SingleIssue implements ISingleIssue
     public function createFromRawData($data)
     {
         $jsonData = json_decode($data);
-        $issue = new Issue($jsonData->key,
+        $issue = new \DixonsCz\Chuck\Jira\Issue($jsonData->key,
             $jsonData->fields->summary,
             $jsonData->fields->assignee->name,
             $jsonData->fields->assignee->displayName,
