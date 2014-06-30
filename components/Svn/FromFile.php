@@ -88,7 +88,23 @@ class FromFile implements IHelper
      */
     public function getTagList()
     {
-        return array();
+        return array(
+            'UAT-1.0.0' => array(
+                'name' => 'UAT-1.0.0',
+                'author' => 'john.doe',
+                'revision' => '14',
+            ),
+            'UAT-1.0.1' => array(
+                'name' => 'UAT-1.0.1',
+                'author' => 'john.doe',
+                'revision' => '18',
+            ),
+            'afsafsa' => array(
+                'name' => 'afsafsa',
+                'author' => 'john.doe',
+                'revision' => '13',
+            ),
+        );
     }
 
     /**

@@ -10,42 +10,75 @@ class ApiPresenter extends ProjectPresenter
      */
     private $svn;
 
-    public function __construct(\DixonsCz\Chuck\Svn\IHelper $svnHelper)
+    /**
+     * @var \DixonsCz\Api\ApiService
+     */
+    private $service;
+
+    public function __construct(\DixonsCz\Chuck\Svn\IHelper $svnHelper, \DixonsCz\Api\ApiService $service)
     {
         $this->svn = $svnHelper;
+        $this->service = $service;
     }
 
     /**
-     * @param $project
-     * @param $tagName
-     * @throws \Nette\Application\AbortException
+     * POST: Creates new tag
+     * GET: get tag list
+     *
+     * @param  string $project
+     * @param  string|NULL $id
+     * @throws \DixonsCz\Api\InvalidMethodException
      */
-    public function actionCreateUatTag($project, $tagName)
+    public function actionUatTags($project, $id = null)
     {
-        $branch = 'UAT';
-        if(!$this->svn->doesBranchExist($project, $branch)) {
+        $response = "";
+        try {
+            switch ($this->getRequest()->getMethod()) {
+                case "POST":
+                    if(!is_string($id)) {
+                        throw new \InvalidArgumentException("Missing tag name");
+                    }
+                    $response = $this->service->createTag($project, "UAT", $id);
+                    break;
+
+                case "GET":
+                    $response = $this->service->listTags($project, 'UAT');
+                    break;
+
+                default:
+                    throw new \DixonsCz\Api\InvalidMethodException("Unsupported HTTP method.");
+            }
+        } catch(\Exception $e) {
             $this->sendJson(array(
                 'status' => 'NOK',
-                'message' => "Source branch doesn't exist",
+                'message' => $e->getMessage(),
             ));
         }
 
-        if($this->svn->doesTagExist($project, $tagName)) {
-            $this->sendJson(array(
-                'status' => 'NOK',
-                'message' => "Tag already exists",
-            ));
-        }
-
-        $this->svn->createTag($tagName, "Creating: {$tagName}", 'branches/UAT');
-
-        $this->terminate();
         $this->sendJson(array(
             'status' => 'OK',
-            'message' => 'Tag created',
+            'message' => $response,
         ));
     }
 
+    /**
+     * Gets history for tag
+     *
+     * @param  string $project
+     * @param  string|null $id
+     * @throws \DixonsCz\Api\InvalidMethodException
+     */
+    public function actionHistory($project, $id = null)
+    {
+        switch ($this->getRequest()->getMethod()) {
+            case "GET":
+                // get tag history
+
+                break;
+            default:
+                throw new \DixonsCz\Api\InvalidMethodException("Unsupported HTTP method.");
+        }
+    }
 
     public function actionGetTagHistory($project, $tagName)
     {
@@ -60,9 +93,5 @@ class ApiPresenter extends ProjectPresenter
                 'status' => 'OK',
                 'message' => (string) $changeLog,
             ));
-
-
     }
-
-
 }

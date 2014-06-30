@@ -1,7 +1,6 @@
 <?php
 
 use Nette\Diagnostics\Debugger;
-use Nette\Application\Routers\SimpleRouter;
 
 define('ROOT_DIR', realpath(__DIR__ . '/../'));
 define('WWW_DIR', __DIR__);
@@ -39,9 +38,4 @@ if (false !== getenv('EM_ENV')) { // on DEV EM_ENV is set
 $configurator->addConfig(ROOT_DIR . '/app/config/config.neon', $environment);
 $container = $configurator->createContainer();
 $container->application->catchExceptions = false;
-
-$router = $container->application->getRouter();
-$router[] = new SimpleRouter('Dashboard:default');
-
-// Run the application!
-$container->application->run();
+$container->getService('application')->run();

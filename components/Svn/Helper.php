@@ -316,9 +316,10 @@ class Helper implements IHelper
     /**
      * Load tags information
      *
+     * @param string $project
      * @return array[array] array with tag names as keys and array (with keys: name, author, date, revision) as values
      */
-    public function getTagList()
+    public function getTagList($project = null)
     {
         $tagList = simplexml_load_string($this->executeRemoteCommand('ls', '/tags/'));
 

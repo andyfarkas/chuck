@@ -6,6 +6,7 @@ common:
         jiraApiPath: http://jira.dixons.co.uk/rest/api/latest/
         jiraPath: http://jira.dixons.co.uk/
         svnUrl: https://svn.dixonsretail.net
+
     nette:
         application:
             errorPresenter: Error
@@ -15,7 +16,10 @@ common:
             strictMode: true
             bar:
                 - @svnDebugBar
+
     services:
+        router:
+            factory: DixonsCz\Chuck\RouterFactory::createRouter
         svnDebugBar:
             class: DixonsCz\Chuck\Svn\Panel
             run: true
@@ -55,6 +59,8 @@ common:
             arguments: [%jiraApiPath%, %jira.credentials%]
         revisionMessageParser:
             class: DixonsCz\Chuck\Svn\RevisionMessage\Parser
+        ApiService:
+            class: DixonsCz\Api\ApiService
     includes:
         - secret.neon
 
