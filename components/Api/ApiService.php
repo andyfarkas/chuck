@@ -48,4 +48,17 @@ class ApiService
 
         return $this->helper->createTag($tagName, "Creating: {$tagName}", "branches/{$sourceBranch}");
     }
+
+
+    /**
+     * @param $project
+     * @param $tagName
+     * @return mixed
+     * @throws \Exception
+     */
+    public function getTagHistory($project, $tagName)
+    {
+        $logList = $this->helper->getUATTagChangelog($tagName);
+        return $logList;
+    }
 } 

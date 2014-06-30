@@ -180,7 +180,7 @@ class Helper implements IHelper
      *
      * @param  string $tagName
      * @return array
-     * @throws \Exception
+     * @throws \DixonsCz\Api\SvnException
      */
     public function getUATTagChangelog($tagName)
     {
@@ -192,7 +192,7 @@ class Helper implements IHelper
 
         // check if there is preceding tag and if it's really UAT
         if(!isset($tagName[$tagPosition-1]) || strstr($tagNames[$tagPosition-1], 'UAT') === false) {
-            throw new \InvalidArgumentException("Unable to create changelog from tag {$tagName}");
+            throw new \DixonsCz\Api\SvnException("Unable to create changelog from tag {$tagName}");
         }
 
         $prevTagInfo = $this->getTagInfo($tagNames[$tagPosition-1]);
@@ -205,7 +205,7 @@ class Helper implements IHelper
         $this->panel->endCommand($log);
 
         if ($log == "") {
-            throw new \Exception("Unable to load svn log for 'tags/{$tagName}'!");
+            throw new \DixonsCz\Api\SvnException("Unable to load svn log for 'tags/{$tagName}'!");
         }
 
         return $this->processRawLog($log);

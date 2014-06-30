@@ -70,28 +70,30 @@ class ApiPresenter extends ProjectPresenter
      */
     public function actionHistory($project, $id = null)
     {
-        switch ($this->getRequest()->getMethod()) {
-            case "GET":
-                // get tag history
+        $response = "";
+        try {
+            switch ($this->getRequest()->getMethod()) {
+                case "GET":
+                    $logList = $this->service->getTagHistory($project, $id);
+                    $response = $this->getChangelogTemplate(
+                        $this->getTemplateForProject($project),
+                        $this->getLogGenerator()->generateTicketLog($logList)
+                    );
+                    break;
 
-                break;
-            default:
-                throw new \DixonsCz\Api\InvalidMethodException("Unsupported HTTP method.");
+                default:
+                    throw new \DixonsCz\Api\InvalidMethodException("Unsupported HTTP method.");
+            }
+        } catch(\Exception $e) {
+            $this->sendJson(array(
+                    'status' => 'NOK',
+                    'message' => $e->getMessage(),
+                ));
         }
-    }
-
-    public function actionGetTagHistory($project, $tagName)
-    {
-        $logList = $this->svn->getUATTagChangelog($tagName);
-
-        $changeLog = $this->getChangelogTemplate(
-            $this->getTemplateForProject($project),
-            $this->getLogGenerator()->generateTicketLog($logList)
-        );
 
         $this->sendJson(array(
                 'status' => 'OK',
-                'message' => (string) $changeLog,
+                'message' => $response,
             ));
     }
 }
