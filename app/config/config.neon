@@ -37,8 +37,8 @@ common:
         jiraHelper:
             class: DixonsCz\Chuck\Jira\Wrapper
             arguments: [@jiraIssuesRepository, @logger]
-        logGenerator:
-            class: DixonsCz\Chuck\Log\Generator
+        logProcessor:
+            class: DixonsCz\Chuck\Log\Processor
             arguments: [@jiraHelper]
         mailHelper:
             class: MailHelper
@@ -62,7 +62,7 @@ common:
             arguments: [%projects%, [jiraPath: %jiraPath% ]]
         apiService:
             class: DixonsCz\Chuck\Api\ApiService
-            arguments: [@svnHelper, @logGenerator, @changelogGenerator]
+            arguments: [@svnHelper, @logProcessor, @changelogGenerator]
 
     includes:
         - secret.neon

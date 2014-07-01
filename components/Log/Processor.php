@@ -5,7 +5,7 @@ namespace DixonsCz\Chuck\Log;
 /**
  * @author Michal Svec <michal.svec@dixonsretail.com>
  */
-class Generator
+class Processor
 {
     const ORDER_PRIORITY  = 'priority';
     const ORDER_ISSUETYPE = 'type';

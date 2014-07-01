@@ -39,16 +39,16 @@ abstract class ProjectPresenter extends \DixonsCz\Chuck\Presenters\BasePresenter
     }
 
     /**
-     * @return \DixonsCz\Chuck\Log\Generator
+     * @return \DixonsCz\Chuck\Log\Processor
      */
     protected function getLogGenerator()
     {
-        return $this->context->logGenerator;
+        return $this->context->logProcessor;
     }
 
     /**
      * Gets file name for the template used set in config
-     * @deprecated use Changelog\Generator
+     * @deprecated use Changelog\Processor
      * @param  string $project
      * @return string
      */
@@ -60,7 +60,7 @@ abstract class ProjectPresenter extends \DixonsCz\Chuck\Presenters\BasePresenter
 
     /**
      * Format whole array of log messages
-     * @deprecated use Changelog\Generator
+     * @deprecated use Changelog\Processor
      * @param   array
      * @return array
      */
@@ -82,7 +82,7 @@ abstract class ProjectPresenter extends \DixonsCz\Chuck\Presenters\BasePresenter
     }
 
     /**
-     * @deprecated use Changelog\Generator
+     * @deprecated use Changelog\Processor
      * @param $template
      * @param $ticketLog
      * @return \Nette\Templating\FileTemplate

@@ -16,18 +16,18 @@ class ApiService
     private $tplGenerator;
 
     /**
-     * @var \DixonsCz\Chuck\Log\Generator
+     * @var \DixonsCz\Chuck\Log\Processor
      */
-    private $logGenerator;
+    private $logProcessor;
 
     public function __construct(
         \DixonsCz\Chuck\Svn\IHelper $svnHelper,
-        \DixonsCz\Chuck\Log\Generator $logGenerator,
+        \DixonsCz\Chuck\Log\Processor $logProcessor,
         \DixonsCz\Chuck\Changelog\IGenerator $tplGenerator
     ) {
         $this->helper = $svnHelper;
         $this->tplGenerator = $tplGenerator;
-        $this->logGenerator = $logGenerator;
+        $this->logProcessor = $logProcessor;
     }
 
     /**
@@ -74,7 +74,7 @@ class ApiService
     public function getTagHistory($project, $tagName, $useTemplate = true)
     {
         $logList = $this->helper->getUATTagChangelog($tagName);
-        $ticketList = $this->logGenerator->generateTicketLog($logList);
+        $ticketList = $this->logProcessor->generateTicketLog($logList);
 
         if(!$useTemplate) {
             return $ticketList;
