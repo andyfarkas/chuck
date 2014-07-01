@@ -48,7 +48,7 @@ abstract class ProjectPresenter extends \DixonsCz\Chuck\Presenters\BasePresenter
 
     /**
      * Gets file name for the template used set in config
-     *
+     * @deprecated use Changelog\Generator
      * @param  string $project
      * @return string
      */
@@ -60,7 +60,7 @@ abstract class ProjectPresenter extends \DixonsCz\Chuck\Presenters\BasePresenter
 
     /**
      * Format whole array of log messages
-     *
+     * @deprecated use Changelog\Generator
      * @param   array
      * @return array
      */
@@ -81,6 +81,12 @@ abstract class ProjectPresenter extends \DixonsCz\Chuck\Presenters\BasePresenter
         return $logFormatted;
     }
 
+    /**
+     * @deprecated use Changelog\Generator
+     * @param $template
+     * @param $ticketLog
+     * @return \Nette\Templating\FileTemplate
+     */
     protected function getChangelogTemplate($template, $ticketLog)
     {
         // #necessary to create new template, because $this->createTemplate() needs block and includes layout file

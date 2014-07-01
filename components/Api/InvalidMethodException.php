@@ -1,5 +1,5 @@
 <?php
 
-namespace DixonsCz\Api;
+namespace DixonsCz\Chuck\Api;
 
 class InvalidMethodException extends \Exception {}

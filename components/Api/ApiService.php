@@ -1,6 +1,6 @@
 <?php
 
-namespace DixonsCz\Api;
+namespace DixonsCz\Chuck\Api;
 
 
 class ApiService
@@ -10,9 +10,24 @@ class ApiService
      */
     private $helper;
 
-    public function __construct(\DixonsCz\Chuck\Svn\IHelper $svnHelper)
-    {
+    /**
+     * @var \DixonsCz\Chuck\Changelog\Generator
+     */
+    private $tplGenerator;
+
+    /**
+     * @var \DixonsCz\Chuck\Log\Generator
+     */
+    private $logGenerator;
+
+    public function __construct(
+        \DixonsCz\Chuck\Svn\IHelper $svnHelper,
+        \DixonsCz\Chuck\Log\Generator $logGenerator,
+        \DixonsCz\Chuck\Changelog\IGenerator $tplGenerator
+    ) {
         $this->helper = $svnHelper;
+        $this->tplGenerator = $tplGenerator;
+        $this->logGenerator = $logGenerator;
     }
 
     /**
@@ -51,14 +66,20 @@ class ApiService
 
 
     /**
-     * @param $project
-     * @param $tagName
+     * @param string $project
+     * @param string $tagName
+     * @param bool
      * @return mixed
-     * @throws \Exception
      */
-    public function getTagHistory($project, $tagName)
+    public function getTagHistory($project, $tagName, $useTemplate = true)
     {
         $logList = $this->helper->getUATTagChangelog($tagName);
-        return $logList;
+        $ticketList = $this->logGenerator->generateTicketLog($logList);
+
+        if(!$useTemplate) {
+            return $ticketList;
+        }
+
+        return $this->tplGenerator->getLogFormatted($project, $ticketList);
     }
 } 

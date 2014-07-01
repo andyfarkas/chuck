@@ -11,11 +11,11 @@ class ApiPresenter extends ProjectPresenter
     private $svn;
 
     /**
-     * @var \DixonsCz\Api\ApiService
+     * @var \DixonsCz\Chuck\Api\ApiService
      */
     private $service;
 
-    public function __construct(\DixonsCz\Chuck\Svn\IHelper $svnHelper, \DixonsCz\Api\ApiService $service)
+    public function __construct(\DixonsCz\Chuck\Svn\IHelper $svnHelper, \DixonsCz\Chuck\Api\ApiService $service)
     {
         $this->svn = $svnHelper;
         $this->service = $service;
@@ -27,7 +27,7 @@ class ApiPresenter extends ProjectPresenter
      *
      * @param  string $project
      * @param  string|NULL $id
-     * @throws \DixonsCz\Api\InvalidMethodException
+     * @throws \DixonsCz\Chuck\Api\InvalidMethodException
      */
     public function actionUatTags($project, $id = null)
     {
@@ -46,7 +46,7 @@ class ApiPresenter extends ProjectPresenter
                     break;
 
                 default:
-                    throw new \DixonsCz\Api\InvalidMethodException("Unsupported HTTP method.");
+                    throw new \DixonsCz\Chuck\Api\InvalidMethodException("Unsupported HTTP method.");
             }
         } catch(\Exception $e) {
             $this->sendJson(array(
@@ -66,7 +66,7 @@ class ApiPresenter extends ProjectPresenter
      *
      * @param  string $project
      * @param  string|null $id
-     * @throws \DixonsCz\Api\InvalidMethodException
+     * @throws \DixonsCz\Chuck\Api\InvalidMethodException
      */
     public function actionHistory($project, $id = null)
     {
@@ -74,15 +74,11 @@ class ApiPresenter extends ProjectPresenter
         try {
             switch ($this->getRequest()->getMethod()) {
                 case "GET":
-                    $logList = $this->service->getTagHistory($project, $id);
-                    $response = $this->getChangelogTemplate(
-                        $this->getTemplateForProject($project),
-                        $this->getLogGenerator()->generateTicketLog($logList)
-                    );
+                    $response = $this->service->getTagHistory($project, $id, true);
                     break;
 
                 default:
-                    throw new \DixonsCz\Api\InvalidMethodException("Unsupported HTTP method.");
+                    throw new \DixonsCz\Chuck\Api\InvalidMethodException("Unsupported HTTP method.");
             }
         } catch(\Exception $e) {
             $this->sendJson(array(
