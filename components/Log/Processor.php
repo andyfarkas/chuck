@@ -73,7 +73,7 @@ class Processor
         {
             $revisionMessage = $this->revisionMessageParser->parseFromString($logLine['msg']);
             $jiraIssue = $revisionMessage->findJiraIssue($this->jiraHelper);
-            if ($jiraIssue != null)
+            if ($jiraIssue !== null)
             {
                 $issues[] = $jiraIssue;
             }

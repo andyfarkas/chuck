@@ -147,4 +147,22 @@ class FromFile implements IHelper
     {
         return true;
     }
+
+    public function getUATTagChangelog($tagName)
+    {
+        return array(
+            '18' => array(
+                'revision' => 18,
+                'author' => 'svecm01',
+                'date' => '2014-07-01T12:46:56.551610Z',
+                'msg' => 'Test',
+            ),
+            '19' => array(
+                'revision' => 19,
+                'author' => 'svecm01',
+                'date' => '2014-07-01T14:46:56.551610Z',
+                'msg' => '[XXX-12] Test',
+            ),
+        );
+    }
 }
