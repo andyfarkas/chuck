@@ -1,18 +1,18 @@
 {
 	"name": "DixonsCz/chuck",
 	"require": {
-		"nette/nette": "~2.1",
-		"kdyby/curl": "@stable",
-		"monolog/monolog": "~1.8"
+		"nette/nette": "2.1.*",
+		"kdyby/curl": "*",
+		"monolog/monolog": "1.8.*"
 	},
 	"require-dev": {
+		"symfony/dom-crawler": "2.4.4",
 		"phpunit/phpunit": "3.7.*",
-		"behat/behat": "*",
-		"behat/mink": "*",
+		"behat/behat": "2.5.*",
+		"behat/mink": "1.5.*",
 		"behat/mink-extension": "*",
-		"behat/mink-goutte-driver": "*",
-		"behat/mink-selenium2-driver": "*",
-		"behat/mink-zombie-driver": "*"
+		"behat/mink-goutte-driver": "1.0.9",
+		"behat/mink-selenium2-driver": "1.1.*"
 	},
 	"autoload": {
 		"classmap": ["app/", "components/"]

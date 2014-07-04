@@ -38,14 +38,15 @@ class RevisionMessage implements IRevisionMessage
         {
             return null;
         }
-        
-        $issue = $jira->getTicketInfo($this->ticketNumber);
-        
-        if ($issue != null)
-        {
+
+        try {
+            $issue = $jira->getTicketInfo($this->ticketNumber);
             $issue->attachRevisionMessage($this);
+
+        } catch (\DixonsCz\Jira\JiraException $e) {
+            $issue = null;
         }
-        
+
         return $issue;
     }
 

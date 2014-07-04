@@ -63,8 +63,27 @@ interface IHelper
     /**
      * Creates new tag from trunk
      *
-     * @param string $tagName    tag name
+     * @param string $tagName tag name
      * @param string $tagMessage message to add
+     * @param string $createFrom branch or trunk
      */
-    public function createTag($tagName, $tagMessage);
+    public function createTag($tagName, $tagMessage, $createFrom);
+
+    /**
+     * Checks if branch exists
+     *
+     * @param $project
+     * @param $branchName
+     * @return boolean
+     */
+    public function doesBranchExist($project, $branchName);
+
+    /**
+     * Checks if tag exists (is not empty)
+     *
+     * @param $project
+     * @param $tagName
+     * @return mixed
+     */
+    public function doesTagExist($project, $tagName);
 }

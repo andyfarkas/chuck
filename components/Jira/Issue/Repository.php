@@ -45,8 +45,7 @@ class Repository implements IRepository
     {
         $request = $this->requestsFactory->createIssueRequestByKey($key);
         $response = $request->send($this->client);
-        $issue = $response->transform($this->singleIssueTransformer);
-        return $issue;
-    }
 
+        return $response->transform($this->singleIssueTransformer);
+    }
 }

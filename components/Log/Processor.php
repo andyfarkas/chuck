@@ -3,10 +3,9 @@
 namespace DixonsCz\Chuck\Log;
 
 /**
- *
  * @author Michal Svec <michal.svec@dixonsretail.com>
  */
-class Generator extends \Nette\Application\UI\Control
+class Processor
 {
     const ORDER_PRIORITY  = 'priority';
     const ORDER_ISSUETYPE = 'type';
@@ -74,7 +73,7 @@ class Generator extends \Nette\Application\UI\Control
         {
             $revisionMessage = $this->revisionMessageParser->parseFromString($logLine['msg']);
             $jiraIssue = $revisionMessage->findJiraIssue($this->jiraHelper);
-            if ($jiraIssue != null)
+            if ($jiraIssue !== null)
             {
                 $issues[] = $jiraIssue;
             }

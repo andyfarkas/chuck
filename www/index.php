@@ -1,8 +1,6 @@
 <?php
 
-use Nette\Diagnostics\Debugger,
-    Nette\Application\Routers\Route,
-    Nette\Application\Routers\SimpleRouter;
+use Nette\Diagnostics\Debugger;
 
 define('ROOT_DIR', realpath(__DIR__ . '/../'));
 define('WWW_DIR', __DIR__);
@@ -16,8 +14,8 @@ require ROOT_DIR . '/vendor/autoload.php';
 \Nette\Diagnostics\Debugger::enable(Debugger::DEVELOPMENT);
 
 // Configure application
-$configurator = new Nette\Config\Configurator;
-$configurator->setDebugMode(TRUE);
+$configurator = new \Nette\Configurator();
+$configurator->setDebugMode(true);
 $configurator->setTempDirectory(ROOT_DIR . '/temp');
 $configurator->createRobotLoader()
     ->addDirectory(APP_DIR)
@@ -33,16 +31,11 @@ if (false !== getenv('EM_ENV')) { // on DEV EM_ENV is set
     $environment = "dixdev";
 } elseif (false !== strstr($_SERVER["SERVER_SOFTWARE"], "nginx")) { // jenkins server runs on nginx
     $environment = "jenkins";
-    $configurator->setDebugMode(FALSE);
+    $configurator->setDebugMode(false);
     \Nette\Diagnostics\Debugger::enable(Debugger::PRODUCTION);
 }
 
 $configurator->addConfig(ROOT_DIR . '/app/config/config.neon', $environment);
 $container = $configurator->createContainer();
-$container->application->catchExceptions = FALSE;
-
-$router = $container->application->getRouter();
-$router[] = new SimpleRouter('Dashboard:default');
-
-// Run the application!
-$container->application->run();
+$container->application->catchExceptions = false;
+$container->getService('application')->run();

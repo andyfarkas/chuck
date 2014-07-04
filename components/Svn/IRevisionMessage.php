@@ -10,4 +10,9 @@ interface IRevisionMessage
      * @return \DixonsCz\Chuck\Jira\IIssue
      */
     public function findJiraIssue(\DixonsCz\Chuck\Jira\Wrapper $jira);
+
+    /**
+     * @return mixed[]
+     */
+    public function toArray();
 }

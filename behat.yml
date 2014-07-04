@@ -12,4 +12,3 @@ default:
       javascript_session: selenium2
       goutte: ~
       selenium2: ~
-      zombie: ~

@@ -6,7 +6,7 @@ interface IParser
 {
     /**
      * @param string $message
-     * @return IRevisionMessage
+     * @return \DixonsCz\Chuck\Svn\IRevisionMessage
      */
     function parseFromString($message);
 }

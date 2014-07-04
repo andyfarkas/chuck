@@ -20,13 +20,10 @@ class FromFile implements IHelper
     }
 
     /**
-     * 
-     * @param string $tagName
-     * @param string $tagMessage
+     * {@inheritdoc}
      */
-    public function createTag($tagName, $tagMessage)
+    public function createTag($tagName, $tagMessage, $createFrom)
     {
-        
     }
 
     /**
@@ -91,7 +88,23 @@ class FromFile implements IHelper
      */
     public function getTagList()
     {
-        return array();
+        return array(
+            'UAT-1.0.0' => array(
+                'name' => 'UAT-1.0.0',
+                'author' => 'john.doe',
+                'revision' => '14',
+            ),
+            'UAT-1.0.1' => array(
+                'name' => 'UAT-1.0.1',
+                'author' => 'john.doe',
+                'revision' => '18',
+            ),
+            'afsafsa' => array(
+                'name' => 'afsafsa',
+                'author' => 'john.doe',
+                'revision' => '13',
+            ),
+        );
     }
 
     /**
@@ -119,4 +132,37 @@ class FromFile implements IHelper
         
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function doesBranchExist($project, $branchName)
+    {
+        return true;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function doesTagExist($project, $tagName)
+    {
+        return true;
+    }
+
+    public function getUATTagChangelog($tagName)
+    {
+        return array(
+            '18' => array(
+                'revision' => 18,
+                'author' => 'svecm01',
+                'date' => '2014-07-01T12:46:56.551610Z',
+                'msg' => 'Test',
+            ),
+            '19' => array(
+                'revision' => 19,
+                'author' => 'svecm01',
+                'date' => '2014-07-01T14:46:56.551610Z',
+                'msg' => '[XXX-12] Test',
+            ),
+        );
+    }
 }

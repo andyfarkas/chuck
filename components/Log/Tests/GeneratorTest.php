@@ -53,7 +53,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function testParseRevisionMessage_correctMessage()
     {
-        $generator = new \DixonsCz\Chuck\Log\Generator($this->getJiraMock(), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
+        $generator = new \DixonsCz\Chuck\Log\Processor($this->getJiraMock(), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
 
         $result = $generator->parseRevisionMessage("[TEST-12] testing\n- lorem ipsum");
         $this->assertEquals('TEST-12', $result['ticket']);
@@ -61,7 +61,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function testParseRevisionMessage_wrongMessage()
     {
-        $generator = new \DixonsCz\Chuck\Log\Generator($this->getJiraMock(), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
+        $generator = new \DixonsCz\Chuck\Log\Processor($this->getJiraMock(), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
 
         $result = $generator->parseRevisionMessage("testing\n- lorem ipsum");
         $this->assertEquals('', $result['ticket']);
@@ -70,7 +70,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function testGenerateTicketLog_withoutJiraResponse_correctData_withoutJiraResponse()
     {
-        $generator = new \DixonsCz\Chuck\Log\Generator($this->getJiraMock(), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
+        $generator = new \DixonsCz\Chuck\Log\Processor($this->getJiraMock(), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
         $ticketLog = $generator->generateTicketLog($this->getTicketData(3));
 
         $this->assertArrayHasKey('ALL', $ticketLog);
@@ -83,7 +83,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
     public function testGenerateTicketLog_withJiraTicket_returnsCorrectArray()
     {
         $ticketInfo = new \DixonsCz\Chuck\Jira\Issue($key = 'DEVGW-28', null, null, null, null, null, null, null, null, null, null, null, $typeName = 'RFC', null);
-        $generator = new \DixonsCz\Chuck\Log\Generator($this->getJiraMock($ticketInfo), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
+        $generator = new \DixonsCz\Chuck\Log\Processor($this->getJiraMock($ticketInfo), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
         $ticketLog = $generator->generateTicketLog($this->getTicketData(3));
 
         $this->assertCount(5, $ticketLog);
@@ -98,7 +98,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
     {
         $ticketInfo = new \DixonsCz\Chuck\Jira\Issue($key = 'XXX-73', null, null, null, null, null, null, null, null, null, null, null, $typeName = 'RFC', null);
 
-        $generator = new \DixonsCz\Chuck\Log\Generator($this->getJiraMock($ticketInfo), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
+        $generator = new \DixonsCz\Chuck\Log\Processor($this->getJiraMock($ticketInfo), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
         $ticketLog = $generator->generateTicketLog($this->getTicketData(1));	// temporary @ till sorting will be implemented
 
         $this->assertArrayHasKey('ALL', $ticketLog);
@@ -110,7 +110,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
     {
         $ticketInfo = new \DixonsCz\Chuck\Jira\Issue($key = 'XXX-73', null, null, null, null, null, null, null, null, null, null, null, $typeName = 'Technical task', null);                        
 
-        $generator = new \DixonsCz\Chuck\Log\Generator($this->getJiraMock($ticketInfo), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
+        $generator = new \DixonsCz\Chuck\Log\Processor($this->getJiraMock($ticketInfo), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
         $ticketLog = $generator->generateTicketLog($this->getTicketData(1));	// temporary @ till sorting will be implemented
 
         $this->assertArrayHasKey('ALL', $ticketLog);
@@ -122,7 +122,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
     {
         $ticketInfo = new \DixonsCz\Chuck\Jira\Issue($key = 'XXX-73', null, null, null, null, null, null, null, null, null, null, null, $typeName = 'Support Request', null);                                
 
-        $generator = new \DixonsCz\Chuck\Log\Generator($this->getJiraMock($ticketInfo), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
+        $generator = new \DixonsCz\Chuck\Log\Processor($this->getJiraMock($ticketInfo), new \DixonsCz\Chuck\Svn\RevisionMessage\Parser());
         $ticketLog = $generator->generateTicketLog($this->getTicketData(1));	// temporary @ till sorting will be implemented
 
         $this->assertArrayHasKey('ALL', $ticketLog);

@@ -17,7 +17,13 @@ class HttpRequest implements IHttpRequest
         $request = new \Kdyby\Curl\Request($url);
         $request->headers['Authorization'] = 'Basic ' . base64_encode("{$username}:{$password}");
         $request->setFollowRedirects(TRUE);
-        return $request->get()->getResponse();
+
+        try {
+            $response = $request->get()->getResponse();
+        } catch(\Kdyby\Curl\CurlException $e) {
+            $response = null;
+        }
+
+        return $response;
     }
-                                                                                                
 }

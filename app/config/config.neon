@@ -6,13 +6,22 @@ common:
         jiraApiPath: http://jira.dixons.co.uk/rest/api/latest/
         jiraPath: http://jira.dixons.co.uk/
         svnUrl: https://svn.dixonsretail.net
+
     nette:
         application:
             errorPresenter: Error
             mapping:
                 *: DixonsCz\Chuck\Presenters\*Presenter
+        debugger:
+            strictMode: true
+            bar:
+                - @svnDebugBar
 
     services:
+        router:
+            factory: DixonsCz\Chuck\RouterFactory::createRouter
+        svnDebugBar:
+            class: DixonsCz\Chuck\Svn\Panel
         streamHandler:
             class: Monolog\Handler\StreamHandler
             arguments: ['../log/log.txt', 200]
@@ -24,13 +33,12 @@ common:
             arguments: ['main']
         svnHelper:
             class: DixonsCz\Chuck\Svn\Helper
-            arguments: [%tempDir%, @logger, %svn.credentials%, %projects%]
-            run: true
+            arguments: [%tempDir%, @svnDebugBar, %svn.credentials%, %projects%]
         jiraHelper:
             class: DixonsCz\Chuck\Jira\Wrapper
             arguments: [@jiraIssuesRepository, @logger]
-        logGenerator:
-            class: DixonsCz\Chuck\Log\Generator
+        logProcessor:
+            class: DixonsCz\Chuck\Log\Processor
             arguments: [@jiraHelper]
         mailHelper:
             class: MailHelper
@@ -49,6 +57,13 @@ common:
             arguments: [%jiraApiPath%, %jira.credentials%]
         revisionMessageParser:
             class: DixonsCz\Chuck\Svn\RevisionMessage\Parser
+        changelogGenerator:
+            class: DixonsCz\Chuck\Changelog\Generator
+            arguments: [%projects%, [jiraPath: %jiraPath% ]]
+        apiService:
+            class: DixonsCz\Chuck\Api\ApiService
+            arguments: [@svnHelper, @logProcessor, @changelogGenerator]
+
     includes:
         - secret.neon
 
